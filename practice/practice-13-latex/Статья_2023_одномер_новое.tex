@@ -1,0 +1,522 @@
+\documentclass[a4paper,11pt]{article}%amsbook amsproc,slides, amsart
+\usepackage[russian]{babel}
+%\usepackage{graphicx,color}
+\usepackage{color}
+\usepackage{amssymb,amsthm,amsmath}%,amsthm,amsmath}\widetilde{\widetilde{}}
+\usepackage[cp1251]{inputenc}
+%\usepackage[cp866]{inputenc}\swarrow
+\usepackage{graphicx}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.tif}
+
+
+%        Курсивные окруж\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\newtheorem{theorems}{Теорема}[section]
+\newtheorem{lemmas}{Лемма}[section]
+\newtheorem{propositions}{Предложение}[section]
+% Теорема 1.1, лемма 1.1, предложение 1.1 и т.п.
+
+
+
+%        Окружения с прямым шрифтом
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem{corollary}{Следствие}
+\newtheorem{remark}{Замечание}
+\newtheorem{algorithm}{Algorithm}
+
+% Оформление списка литературы
+\newenvironment{ltrtr}{
+ \vspace{0.5\baselineskip} \noindent {\footnotesize{
+ЛИТЕРАТУРА}} \vspace{-0.5\baselineskip}
+ \begin{enumerate}
+ \partopsep=0pt\topsep=0pt\itemsep=1pt\parsep=0pt\parskip=0pt}{\end{enumerate}}
+%\pagenumbering{arabic}
+\pagestyle{plain}%myheadings}%  plain
+\textwidth 16.5cm \textheight 24cm \hoffset -1cm \topmargin -0.5cm
+
+
+\begin{document}
+\begin{flushleft}
+УДК 517.983.54
+\end{flushleft}
+\begin{center}
+{\bf О ЕДИНСТВЕННОСТИ  РЕШЕНИЯ ОБРАТНОЙ ГРАНИЧНОЙ ЗАДАЧИ ДЛЯ УРАВНЕНИЯ ТЕПЛОПРОВОДНОСТИ НА КОНЕЧНОМ ВРЕМЕННОМ ПРОМЕЖУТКЕ
+\\[2ex]
+В.\,П.\, Танана}\\[3ex]
+\end{center}
+%\begin{center}
+%{\bf РЕШЕНИЕ ОБРАТНОЙ ГРАНИЧНОЙ ЗАДАЧИ ТЕПЛООБМЕНА ДЛЯ ПОЛОГО ШАРА The work was supported by the Ministry of Science and Higher Education of the Russian
+%Federation (government order FENU-2020-0022).}
+%\\[2ex]
+%А.\,И.\, Сидикова, }\\[3ex]
+%\end{center}
+%\begin{center}
+%{\textbf{
+%РЕШЕНИЕ ОБРАТНОЙ ГРАНИЧНОЙ ЗАДАЧИ ТЕПЛООБМЕНА ДЛЯ ПОЛОГО ЦИЛИНДРА The work was supported by the Ministry of Science and Higher Education of the Russian
+%Federation (government order FENU-2020-0022).
+%}}
+
+
+%{ А.}
+%\end{center}
+%%\thispagestyle{empty}
+%% Аннотация на русском
+
+Данная работа посвящена доказательству единственности решения обратной граничной задачи теплопроводности на конечном временном промежутке.
+Для доказательства единственности решения обратной граничной задачи теплопроводности на конечном временном промежутке использовано расширение исходной задачи на бесконечный временной промежуток. После чего, к новой задаче применено преобразование Фурье по времени. Используя это преобразование искомая задача сведена к системе обыкновенных дифференциальных  уравнений, которая решена в явном виде. Доказана теорема единственности для обратной граничной задачи в Фурье образах.
+
+\textbf{Ключевые слова:} обратная задача теплопроводности,  преобразование Фурье, некорректная задача.
+%%Fredholm integral equation of the first kind, module of continuity, evaluation of inaccuracy, ill-posed problem.
+%
+%%% Аннотация на английском
+%%\textbf{Abstract}
+%%\englishabstract{Important practical problem }
+%%% Ключевые слова на английском
+
+
+
+\textbf{Keywords:} inverse problem of thermal conductivity,  Fourier transform, ill-posed problem.
+\begin{center}
+\textbf{Введение}
+\end{center}
+
+При планировании экспериментальных исследований работы теплонагруженного узла технической конструкции важную роль играет температурная кривая, зависящая от времени. Информация о такой кривой позволяет обеспечить надежную работу  узла. Трудность в получении такой информации вызвана тем, что, как правило, прямое измерение температуры в этом узле невозможно. Одним из известных способов решения этой проблемы  является использование численных методов при определении температуры. Для этой цели измеряют температуру там, где доступно прямое измерение, затем разрабатывают математическую модель, позволяющую по известной температуре,  численно определить искомую температуру. Как правило, такая модель описывается обратной граничной задачей для уравнения теплопроводности  \cite{Tikhonov,Alifanov,Denisov,Yagola_2014,Penenko2008,Penenko2010,KabanikhinShishlenin,LRSh,L,Ivanov1,Ivanov1956}. Известно, что такие задачи, как правило, не являются корректными по Адамару, то есть этот факт предъявляет высокие требования к разрабатываемой модели, а также к использованию высокоточных методов для решения соответствующей обратной задачи. Одним из важнейших требований, предъявляемых к постановке обратной задачи, является единственность ее решения.
+
+ %От поставленной задачи требуется однозначное определение искомого решения, а также условная корректность соответствующей задачи.
+
+Обратные граничные задачи можно условно разделить на два класса. Первый класс состоит из задач, в которых температурное поле измеряется на бесконечном временном промежутке. Примеры таких задач исследовались в \cite{Tikhonov}, \cite{TananaSidikova2018,TS2018,18,TVP4,24,25} и др. Второй класс состоит из задач, в которых температура измеряется на конечном временном промежутке. Заметим, что для задач второго типа работ, посвященных исследованию единственности решения, достаточно мало. Среди них отметим работы \cite{Landis,Lavrentiev,Kabanikhin,26,Ivanov1958}.
+
+
+Целью данной работы является доказательство единственности решения обратной граничной задачи теплопроводности на конечном временном промежутке. Подобная задача решена в книге С.И. Кабанихина (\cite[c.~250, теорема 8.4.2]{Kabanikhin}), но при более обременительных условиях на решение задачи. Например, в теореме 8.4.2 предполагается, что уравнение теплопроводности выполняется на замкнутом прямоугольнике $[0,1]\times[0,T]$, а это требование сужает класс решаемых задач. В данной статье доказывается единственность решения обратной граничной задачи теплопроводности без предположения о выполнении уравнения теплопроводности на замкнутом прямоугольнике $[0,1]\times[0, T]$.
+
+Статья структурирована следующим образом. В разделе 1 дана постановка и исследование прямой задачи теплопроводности на конечном промежутке.
+ В разделе 2 на конечном промежутке рассмотрена постановка обратной граничной задачи. Продолжение решения прямой задачи на бесконечный временной промежуток сделано в разделе 3.
+В разделах 4 и 5 доказана единственность решения обратной задачи.
+
+
+% граничные условия, которые требуют выполнения уравнения теплопроводности и на границах. В настоящей работе для доказательства теоремы единственности, использована методика, разработанная авторами для случая бесконечного временного интервала (см. \cite{}, \cite{}, \cite{} и \cite{} ). Так как теория обратных задач имеет не только теоретическое см. \cite{}, \cite{}, \cite{} и др., но и прикладное значение \cite{}, то ослабление ограничений на параметры задачи имеют большое значение.
+%
+
+
+%\section{Постановка  обратной задачи}
+%\label{sec1}
+
+{\bf 1. Постановка  и решение прямой задачи теплопроводности на конечном временном промежутке $[0,t_0],\ \ t_0>0,$ которая является первой краевой задачей для уравнения теплопроводности }
+
+
+Пусть  тепловой процесс описывается уравнением
+\begin{equation}
+ \frac{\partial u(x,t)}{\partial
+t}=\frac{\partial^{2}u(x,t)}{\partial x^2},\ \  0<x<1,\ \ 0<t\leq t_0,
+ \label{AS001}
+\end{equation}
+\begin{equation}
+u(x,0)=0,  \ \ 0\leq x\leq 1,
+ \label{AS002}
+\end{equation}
+\begin{equation}
+ u(0,t)=0,\ \ 0\leq t\leq t_0,
+ \label{AS003}
+\end{equation}
+\begin{equation}
+ u(1,t)=q_1(t),\ \ \ 0\leq t\leq t_0,
+\label{AS004}
+\end{equation}
+где
+\begin{equation}
+ q_1(t)\in C^2[0,t_0],\ q_1(0)=q'_1(0)=q_1'(t_0)=q_1''(t_0)=0.
+ \label{AS005}
+\end{equation}
+
+Прямой задачей $\eqref{AS001}$--$\eqref{AS004}$ назовем задачу, в которой функция $q_1(t)$ известна, а функцию $u(x,t)$ требуется определить.
+
+Для решения поставленной задачи сделаем замену
+\begin{equation}
+v(x,t)=u(x,t)-xq_1(t),\quad 0\leq x\leq 1,\ \ 0\leq t\leq t_0,
+\label{AS006}
+\end{equation}
+воспользовавшись которой, сведем задачу $\eqref{AS001}$--$\eqref{AS004}$ к следующей
+
+\begin{equation}
+ \frac{\partial v(x,t)}{\partial
+t}=\frac{\partial^{2}v(x,t)}{\partial x^2}-xq_1'(t),\ \  0<x<1,\ \ 0<t\leq t_0,
+ \label{AS007}
+\end{equation}
+\begin{equation}
+v(x,0)=0,  \ \ 0\leq x\leq 1,
+ \label{AS008}
+\end{equation}
+\begin{equation}
+ v(0,t)=0,\ \ 0\leq t\leq t_0,
+ \label{AS009}
+\end{equation}
+\begin{equation}
+ v(1,t)=0,\ \ \ 0\leq t\leq t_0.
+\label{AS010}
+\end{equation}
+
+Решая задачу  $\eqref{AS007}$--$\eqref{AS010}$, получим, что
+\begin{equation}
+v(x,t):=2\cdot\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{\pi n}\sin \pi nx\int_0^t e^{-(\pi n)^2(t-\tau)}q_1'(\tau)d\tau,\ \ 0< x\leq 1,\ \ 0\leq t\leq t_0.
+\label{AS011}
+\end{equation}
+
+Интегрируя по частям каждое слагаемое правой части  $\eqref{AS011}$, преобразуем ряд $\eqref{AS011}$ к следующему
+\begin{equation}
+2\cdot\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{(\pi n)^3}\biggl[q_1'(t)-\int_0^t q_1''(\tau)\cdot e^{-(\pi n)^2(t-\tau)}d\tau\biggr]\sin \pi nx,\ \ 0\leq x\leq 1,\ \ 0\leq t\leq t_0.
+\label{AS012}
+\end{equation}
+
+Продифференцировав по $x$ каждое слагаемое ряда $\eqref{AS012}$, получим ряд из производных
+\begin{equation}
+2\cdot\sum_{n=1}^{\infty}\frac{(-1)^{n+1}}{(\pi n)^2}\biggl[q_1'(t)-\int_0^t q_1''(\tau)\cdot e^{-(\pi n)^2(t-\tau)}d\tau\biggr]\cos \pi nx,\ \ 0\leq x\leq 1,\ \ 0\leq t\leq t_0.
+\label{AS013}
+\end{equation}
+
+Для применения признака Вейерштрасса к рядам $\eqref{AS012}$ и $\eqref{AS013}$, оценим каждое из слагаемых этих рядов.
+
+Из условия $\eqref{AS005}$ будем иметь существование числа $d_1>0$ такого, что для любого $t\in [0,t_0]$
+$$
+\displaystyle\max_t\{|q_1'(t)|, |q_1''(t)|\}\leq d_1.
+$$
+
+Таким образом, из последнего соотношения, будет следовать, что для любых $t\in[0,t_0]$ и $n$
+\begin{equation}
+\biggl|q_1'(t)-\int_0^t q_1''(\tau)\cdot e^{-(\pi n)^2(t-\tau)}d\tau\biggr|\leq|q_1'(t)|+\int_0^{t_0} |q_1''(\tau)|d\tau\leq d_1(1+t_0).
+ \label{AS014}
+\end{equation}
+
+
+\begin{lemma}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Лемма 1
+Для любого $\varepsilon>0$ функциональный ряд $\eqref{AS020}$ сходится равномерно на множестве $[0,1-\varepsilon]\times[0,t_0]$.
+\label{Lem01}
+\end{lemma}
+\begin{proof}
+Так как $q'(t)$ не зависит от $n$, то достаточно ограничится исследованием равномерной сходимости ряда
+$$
+\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^{n}}{\pi n}\cdot\sin\pi nx, \ 0\leq x\leq 1.
+ $$
+
+Для доказательства используем признак Дирихле. Сначала оценим частичную сумму
+ \begin{equation}
+\sum_{\kappa=1}^{N}(-1)^{n} \sin\pi n x, \ 0\leq x\leq 1,
+ \label{AS022}
+\end{equation}
+ в которой разделим слагаемые на пары
+ $$
+ (\sin2\pi x-\sin\pi x )+(\sin 4\pi x-\sin 3\pi x)
+ $$
+\begin{equation}
++(\sin2\kappa\pi x-\sin(2\kappa-1)\pi x)+...+(\sin2K\pi x-\sin(2K-1)\pi x),\ \ K=[N/2].
+ \label{AS023}
+\end{equation}
+
+Затем каждое слагаемое суммы  $\eqref{AS023}$ представим в виде произведения
+$$
+\sin2\kappa\pi x-\sin(2\kappa-1)\pi x =2\cos\frac{4\kappa-1}{2}\pi x\cdot\sin\frac{\pi}{2}x.
+$$
+
+Подставляя эти произведения в сумму  $\eqref{AS022}$, получаем
+\begin{equation}
+ 2\sin\frac{\pi}{2}x\sum_{\kappa=1}^{2K}  \cos\frac{4\kappa-1}{2}\pi x,\ \  0\leq x\leq 1.
+\label{AS024}
+\end{equation}
+
+Для того, чтобы свернуть сумму $\eqref{AS024}$, умножим ее и разделим на $\sin\pi x$, после чего она примет вид
+$$
+\frac{\sin\frac{\pi }{2}x}{\sin \pi x}\cdot\sum_{\kappa=1}^{2K}2\cos \frac{4\kappa-1}{2}\pi x\sin\pi x,\ 0\leq x\leq 1.
+$$
+Так как
+\begin{eqnarray}
+\begin{gathered}
+2\cos \frac{4\kappa-1}{2}\pi x\sin\pi x=\sin\frac{4\kappa+1}{2}\pi x-\sin\frac{4\kappa-3}{2}\pi x,\\
+2\cos \frac{4(\kappa+1)-1}{2}\pi x\sin\pi x=\sin\frac{4\kappa+5}{2}\pi x-\sin\frac{4\kappa+1}{2}\pi x,\\
+\end{gathered}
+\label{AS025}
+\end{eqnarray}
+то из $\eqref{AS024}$ и $\eqref{AS025}$,  после сокращения, сумма $\eqref{AS022}$ будет преобразована в выражение
+\begin{eqnarray}
+-\frac{\sin\frac{\pi }{2}x}{\sin \pi x}\cdot[\sin \frac{\pi}{2} x-\sin\frac{4\kappa+5}{2}\pi x],\ 0\leq x\leq 1.
+\label{AS026}
+\end{eqnarray}
+
+Из $\eqref{AS022}$--$\eqref{AS026}$ будет следовать, что для любых значений $\varepsilon>0$ ,  $x\in[0,1-\varepsilon]$ и $N$
+\begin{eqnarray}
+\biggl|\sum_{n=1}^{N}(-1)^n\sin \pi n x\biggr|\leq\frac{3}{\sin\pi(1-\varepsilon)}.
+\label{AS027}
+\end{eqnarray}
+
+ Так как  последовательность $\displaystyle\biggl\{\frac{1}{\pi n}\biggl\}$ убывая, стремится к нулю при $n\rightarrow\infty$, то из $\eqref{AS027}$ следует равномерная сходимость ряда $\eqref{AS020}$  на $[0,1-\varepsilon]\times[0,t_0]$.
+
+Тем самым лемма доказана.
+\end{proof}
+
+\begin{lemma}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Лемма 2
+Функциональный ряд $\eqref{AS021}$  равномерно сходится на множестве $[0,1]\times [0,t_0]$.
+\label{Lem02}
+\end{lemma}
+\proof
+Из $\eqref{AS014}$ следует  существование числа $d_1>0$ такого, что для любого $t\in [0,t_0]$
+$$
+|q_1''(t)|\leq d_1.
+  $$
+
+Откуда для любого $n$
+\begin{equation}
+\biggl|\int_0^t q_1''(\tau)e^{-(\pi n)^2(t-\tau)}d\tau\biggr|\leq d_1 e^{-(\pi n)^2t}\int_0^t e^{(\pi n)^2\tau}d\tau.
+  \label{AS028}
+\end{equation}
+
+Поскольку
+$$
+\int_0^t e^{(\pi n)^2\tau}d\tau=\frac{1}{(\pi n)^2}[e^{(\pi n)^2t}-1],
+$$
+то из $\eqref{AS028}$ будем иметь
+\begin{equation}
+\biggl|\int_0^t q_1''(\tau)e^{-(\pi n)^2(t-\tau)}d\tau\biggr|\leq \frac{d_1}{ (\pi n)^2}.
+  \label{AS029}
+\end{equation}
+
+Учитывая $\eqref{AS021}$ и $\eqref{AS029}$, получим, что для любых значений $x\in[0,1]$,  $t\in[0,t_0]$\ и \ $n$
+$$
+\biggl|\frac{(-1)^{n+1}}{\pi n}\biggl[\int_0^t q_1''(\tau)e^{-(\pi n)^2(t-\tau)}d\tau\biggr] \sin\pi nx\biggr|\leq\frac{d_1}{ (\pi n)^3} .
+$$
+
+
+Из  предыдущего соотношения, по  признаку Вейерштрасса, будем иметь равномерную сходимость  ряда $\eqref{AS021}$   на множестве $[0,1]\times[0,t_0].$
+
+Тем самым лемма доказана.
+\endproof
+
+Из лемм $\ref{Lem01}$  и $\ref{Lem02}$ следует, что для любых значений $x\in[0,1)$ и $t\in[0,t_0]$
+\begin{equation}
+\frac{\partial^2 v(x,t)}{\partial x^2}=2\sum_{n=1}^{\infty}\frac{(-1)^{n}}{\pi n}\sin\pi nx\biggl[q_1'(t)-\int_0^t q_1''(\tau)e^{-(\pi n)^2(t-\tau)}d\tau\biggr],
+\label{AS030}
+\end{equation}
+а также, что
+\begin{equation}
+\frac{\partial^2 v(x,t)}{\partial x^2}\quad\mbox{и}\quad\frac{\partial v(x,t)}{\partial t}\in C([0,1)\times[0,t_0]).
+ \label{AS031}
+\end{equation}
+
+Из  $\eqref{AS030}$, $\eqref{AS031}$ и лемм $\ref{Lem01}$, $\ref{Lem02}$ следует теорема
+\begin{theorem}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Теорема 1
+Пусть   $q_1(t)$ удовлетворяет условию $\eqref{AS005}$. Тогда решение $v(x,t)$  задачи $\eqref{AS007}$--$\eqref{AS010}$ существует  и определяется рядом  $\eqref{AS012}$, при этом
+$$
+v(x,t),\ \frac{\partial v(x,t)}{\partial x}\in C([0,1]\times[0,t_0]),
+$$
+а
+$$
+\frac{\partial^2 v(x,t)}{\partial x^2},\ \frac{\partial v(x,t)}{\partial t}\in C([0,1)\times[0,t_0]).
+$$
+ Кроме того, решение $u(x,t)$ задачи $\eqref{AS001}$--$\eqref{AS004}$, которое связано с решением $v(x,t)$ формулой $\eqref{AS006}$, существует и   удовлетворяет следующим условиям гладкости
+$$
+u(x,t),\ \frac{\partial u(x,t)}{\partial x}\in C([0,1]\times[0,t_0]),
+$$
+$$
+\frac{\partial^2 u(x,t)}{\partial x^2}, \ \frac{\partial u(x,t)}{\partial t}\in C((0,1)\times[0,t_0]).
+$$
+\label{TH01}
+\end{theorem}
+
+
+Из теоремы $\ref{TH01}$ следует, что решение $u(x,t),\ \ 0\leq x\leq 1,\ \ 0\leq t\leq t_0$  задачи $\eqref{AS001}$--$\eqref{AS004}$ является классическим,  а на основании теоремы единственности,  сформулированной и доказанной в книге \cite[глава 3, § 1, п. 6, стр.193]{TikhonovSamar}  это решение  единственно.
+
+
+
+
+Из $\eqref{AS088}$ следует, что для любого $\tau\in(-\infty,\infty)$
+\begin{equation}
+W(\tau)=
+\begin{vmatrix}
+     0 & 1 & 0 & 0 \\
+     0 & 0 & -\tau & 0 \\
+     0 & 0 & 0 & 1 \\
+     \tau & 0 & 0 & 0
+\end{vmatrix}
+=
+-\tau\begin{vmatrix}
+     1 & 0 & 0  \\
+     0 & \tau & 0 \\
+     0 & 0 & 1
+\end{vmatrix}
+=\tau^2\neq 0\quad\mbox{при}\quad \tau\neq 0.
+\label{AS090}
+\end{equation}
+
+Из  $\eqref{AS090}$ следует единственность тривиального решения системы $\eqref{AS088}$, $\eqref{AS087}$.
+
+Таким образом, для любых $x\in[0,1]$ и $\tau\neq 0$
+\begin{equation}
+w(x,\tau)=0,
+\label{QAS090}
+\end{equation}
+а $\omega(x,0)=0$ продолжим по непрерывности.
+
+Так как преобразование Фурье, см. $\eqref{ASS080}$, определяет изометричное отображение $L_2[0,\infty)$ в $L_2(-\infty,\infty)$, то применяя к функции $w(x,\tau)$ обратное преобразование Фурье, получим, что для любых $x\in[0,1]$ и $t\geq 0$
+\begin{equation}
+U_0(x,t)=0.
+\label{AS091}
+\end{equation}
+Из $\eqref{AS091}$ следует, что
+\begin{equation}
+q_0(t)=0\quad\mbox{при}\quad t\in[0,t_0].
+\label{AS092}
+\end{equation}
+
+
+Равенство $\eqref{AS092}$ противоречит условию $\eqref{AS071}$ и, в частности, предположению в лемме $\ref{Lem05}$ о неединственности решения обратной задачи $\eqref{AS001}$--$\eqref{AS003}$, $\eqref{AS032}$, $\eqref{AS033}$.
+
+
+Из леммы $\ref{Lem05}$ и формулы $\eqref{AS092}$ вытекает следующая теорема.
+
+\begin{theorem}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Теорема 2
+ Обратная граничная задача $\eqref{AS001}$--$\eqref{AS003}$, $\eqref{AS032}$, $\eqref{AS033}$ в классе классических решений прямой задачи  $\eqref{AS001}$--$\eqref{AS004}$, имеет не более одного решения, удовлетворяющего условию $\eqref{AS005}$.
+\label{THEO02}
+\end{theorem}
+
+
+
+
+{\bf Заключение}
+
+В реальном эксперименте, время протекания процесса длится от $[0,t_0]$, но, как известно, возникают проблемы с обоснованием единственности решения обратной граничной задачи теплопроводности. Поэтому рассмотрение процесса на полупрямой $[t_0,\infty)$ является полезным  расширением соответствующей задачи, обеспечивающей требуемую точность при ее решении  \cite{26}.  В данной статье предлагается новая методика, заключающаяся в продолжении обратной граничной задачи на бесконечный временной промежуток. Такой подход позволяет доказать единственность обратной граничной задачи без предположения о выполнении уравнения теплопроводности на замкнутом прямоугольнике $[0,1]\times[0, T]$, но в тоже время данная работа не является обобщением основных результатов работ \cite{Landis} и \cite{Kabanikhin}, так как в ней предполагается известным температурное поле при $t=t_0$.
+
+\begin{thebibliography}{16}  %% {99} если цитируется больше 9 источников
+
+
+\bibitem{Tikhonov}
+ Тихонов~А.Н., Гласко~В.Б. К вопросу о методах определения температуры поверхности тела // Журнал вычислительной  математики и математической физики. 1967. №~4. С.~910--914.
+
+\bibitem{Alifanov}
+ Алифанов~О.М., Артюхин ~Е.А., Румянцев~С.В. Экстремальные методы решения некорректных задач и их приложения к обратным задачам теплообмена. Москва: Наука, 1988. 288~с.
+
+\bibitem{Denisov}
+Денисов~А.М. Введение в теорию обратных задач. Москва: Изд-во МГУ, 1994. 208~с.
+
+\bibitem{Yagola_2014}
+ Ягола~А.Г., Ван Янфей, Степанова~И.Э., В.Н. Титаренко~В.Н. Обратные задачи и методы их решения. Москва: БИНОМ. Лаборатория знаний, 2014. 216~с.
+
+\bibitem{Penenko2008}
+Кабанихин~С.И., Хасанов~А.Х., Пененко~А.В. Метод градиентного спуска для решения обратной коэффициентной задачи теплопроводности // Сибирский журнал вычислительной математики. 2008. Т.~11, №~1. С.~41--51. % DOI:~\href{http://dx.doi.org/10.14529/cmse130105}{10.14529/cmse130105}.
+
+
+\bibitem{Penenko2010}
+ Пененко~А.В. О решении обратной коэффициентной задачи теплопроводности методом проекции градиента // Сибирские электронные математические известия. 2010. №~7. С.~178--198.
+
+\bibitem{KabanikhinShishlenin}
+ Kabanikhin~S.I., Shislenin~M.A.  Regularization of the decision prolongation problem for parabolic and elliptic  equations from border part // Eurasian Journal of Mathematical and Computer Applications. 2014. Vol. 2, no.~2. P.~881--91. %DOI:~\href{http://dx.doi.org/10.32523/2306-3172-2014-2-2-81-91}{10.32523/2306-3172-2014-2-2-81-91}.
+\bibitem{LRSh}
+Лаврентьев~М.М., Романов~В.Г., Шишатский~С.П. Некоторые задачи математической физики и анализа. Москва: Наука, 1980. 285~с.
+
+\bibitem{L}
+ Лаврентьев~М. М. О некоторых некорректных задачах математической физики. Издательство Сибирского отделения АН СССР, 1962. 92~с.
+
+
+
+
+\bibitem{Ivanov1}
+ Иванов~В.К. О разрешимости обратной задачи логарифмического потенциала в конечном виде // Доклады АН СССР. 1956. Т.~106, №~4. С.~598--599.
+
+
+
+\bibitem{Ivanov1956}
+ Иванов~В.К. Обратная задача потенциала для тела, близкого к данному // Известия АН СССР. Серия математика. 1956.   Т.~20, №~6. С.~793--818.
+
+
+\bibitem{TananaSidikova2018}
+ Tanana~V.P., Sidikova~A.I. Optimal Methods for Ill-Posed Problems With Applications to Heat Conduction. De Gruyter, 2018. 130~p. isbn 978-3-11-057721-1
+
+
+\bibitem{TS2018}
+ Tanana~V.P.,  Sidikova~A.I. On improving an error estimate for a nonlinear projective regularization method when solving an inverse boundary value problem. Eurasian Journal of Mathematical and Computer Applications. 2018.  Vol.~6, no.~3. P.~53--74. % DOI:~\href{http://dx.doi.org/10.32523/2306-6172-2018-6-3-53-74}{10.32523/2306-6172-2018-6-3-53-74}.
+
+\bibitem{18}
+  Танана~В.П.,  Сидикова~А.И. Приближенное решение обратной граничной задачи для системы дифференциальных уравнений параболического типа и оценка погрешности этого решения // Тр. ИММ УрО РАН.  2019. Т.~25, \No~3. С.~247--264.  %DOI:~\href{http://dx.doi.org/10.21538/0134-4889-2019-25-3-247-264}{10.21538/0134-4889-2019-25-3-247-264}.
+ %%% Tanana V.P., Sidikova A.I.  Approximate solution of an inverse boundary value problem for a system of differential equations of parabolic type and estimation of the error of this solution .  {\it Trudy Inst. Mat.  Mekh. UrO RAN}, 2019,  vol.~25, no.~3, pp.~247--264 (in Russian).
+ %doi:10.21538/0134-4889-2019-25-3-247-264\,.
+
+
+\bibitem{TVP4}
+ Танана~В.П О сведении обратной граничной задачи к последовательному решению двух некорректных задач // Сибирский журнал вычислительной математики. 2020. Т.~23, №~2. С.~219--232. %DOI:~\href{http://dx.doi.org/10.15372/SJNM20200208}{10.15372/SJNM20200208}.
+
+%%% Tanana V.P.  On Reducing an Inverse Boundary-Value Problem to the Synthesis of Two Ill-Posed Problems and Their Solution.  {\it Numerical Analysis and Applications}, 2020,  vol.~13,  Issue~2, pp.~180--192.
+% doi: 10.1134/S1995423920020081
+
+
+
+\bibitem{24}
+ Танана~В.П Об оптимальном по порядку методе решения одной обратной задачи для параболического уравнения //  Доклады РАН. 2006. Т.~407,  №~3. С.~316--318.
+
+
+\bibitem{25}
+ Танана~В.П Об оценке погрешности метода решения одной обратной задачи для параболического уравнения // Сибирский журнал вычислительной математики.  2010. Т.~13, №4. С.~451--465.
+
+
+
+
+\bibitem{Landis}
+ Ландис~Е.М. Некоторые вопросы качественной теории эллиптических и параболических уравнений // Успехи математических наук. 1959. Т.~2, №~1. С.~21-85.
+
+\bibitem{Lavrentiev}
+ Лаврентьев~М.М., Резницкая~К.Г. Теоремы единственности некоторых обратных задач уравнений параболического типа // Доклады АН СССР. 1973. Т.~208, №~3. С.~531--532.
+
+\bibitem{Kabanikhin}
+ Кабанихин~С. И. Обратные и некорректные задачи. Новосибирск: Сибирское научное издательство, 2009. 458~с.
+  %%Перевод: Kabanikhin S.I. Inverse and Ill-posed problems.-- Novosibirsk: Siberian Academic Press, 2009.
+
+\bibitem{26}
+ Сидикова~А.И. Об исследовании одной обратной граничной задачи для уравнения теплопроводности // Сибирский журнал вычислительной математики.  2019. Т.~22. №~1. С.~81--98.  doi: 10.15372/SJNM20190106\,.
+%%%  Sidikova A.I.  A Study of an Inverse Boundary Value Problem for the Heat Conduction Equation. {\it Numerical Analysis and Applications}, 2019,  vol.~12,  Issue~1, pp.~76--80.
+ %doi: 10.1134/S1995423919010063\,.
+
+
+\bibitem{Ivanov1958}
+ Иванов~В.К. Теорема единственности обратной задачи логарифмического потенциала для звездных множеств // Известия вузов. Математика 1958. №~3. С.~99--106.
+
+
+
+\bibitem{TikhonovSamar}
+  Тихонов~А.Н., Самарский~А.А. Уравнения математической физики. Москва: Наука, 1977. 736~с.
+
+\bibitem{Stepanov}
+ Степанов~В.В. Курс дифференциальных уравнений. Издат.: Едиториал УРСС, 2004. 472~с.
+
+\bibitem{Mikhailov}
+Михайлов~В.П. Дифференциальные уравнения в частных производных. Москва: Наука, 1976. 392~с.
+
+\bibitem{27}
+ Танана В.П. Об оптимальной по порядку регуляризации линейных операторных уравнений при условии неединственности решения //  Доклады АН СССР. 1983. Т.~269,  №~1. С.~37--38.
+ %VP Tanana, “On order-optimal regularization of linear operator equations under the
+%condition of nonuniqueness of solutions”, Dokl. Akad. Nauk SSSR, 269:1 (1983), 37–38.
+
+
+\bibitem{28}
+Тихонов~А.Н., Васильева~А.Б., Свешников~А.Г.,  Дифференциальные уравнения. Москва: Наука, 1985. 231~с.
+
+
+
+
+
+
+
+
+
+\end{thebibliography}
+
+\noindent
+
+
+
+
+
+
+
+
+
+\end{document}

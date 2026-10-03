@@ -1,0 +1,67 @@
+1) Из Википедия. 
+    Методология Программирования
+
+Одинцов И. О. Профессиональное программирование. Системный подход. 
+— 2-е изд.. — СПб.: БХВ-Петербург, 2004. — 624 с. — ISBN 5-94157-457-6.
+
+Логика и компьютер. 
+Моделирование рассуждений и проверка правильности программ. М., Наука, 1990
+
+Тузов В. А. Языки представления знаний. Л., ЛГУ, 1990
+
+2) From Wikipedia.
+     Software development process
+
+ "Selecting a development approach" (PDF). 
+Centers for Medicare & Medicaid Services (CMS) Office of Information Service. 
+United States Department of Health and Human Services (HHS). March 27, 2008 
+[Original Issuance: February 17, 2005]. Archived from the original (PDF) on June 20, 2012.
+ Retrieved October 27, 2008.
+
+ Geoffrey Elliott (2004). Global Business Information Technology: 
+an integrated systems approach. Pearson Education. p. 87.
+
+ Suryanarayana, Girish (2015). "Software Process versus Design Quality: Tug of War?". 
+IEEE Software. 32 (4): 7–11. doi:10.1109/MS.2015.87.
+
+ Paul M. Duvall; Steve Matyas; Andrew Glover (2007). 
+Continuous Integration: Improving Software Quality and Reducing Risk. 
+Addison-Wesley Professional. ISBN 978-0-321-33638-5.
+
+ Booch, Grady (1991). 
+Object Oriented Design: With Applications. 
+Benjamin Cummings. p. 209. ISBN 9780805300918. Retrieved August 18, 2014.
+
+ Whitten, Jeffrey L.; Lonnie D. Bentley, Kevin C. Dittman. (2003). 
+Systems Analysis and Design Methods. 6th edition. ISBN 0-256-19906-X.
+
+ Markus Rerych. "Wasserfallmodell > Entstehungskontext". 
+Institut für Gestaltungs- und Wirkungsforschung, TU-Wien (in German). 
+Retrieved November 28, 2007.
+
+ Conrad Weisert. "Waterfall methodology: there's no such thing!".
+ Archived from the original on August 2, 2022.
+
+ Barry Boehm (August 1986). 
+"A Spiral Model of Software Development and Enhancement". 
+ACM SIGSOFT Software Engineering Notes. 11 (4). 
+Association for Computing Machinery: 14–24. doi:10.1145/12944.12948. S2CID 1781829.
+
+ Richard H. Thayer; Barry W. Boehm (1986). 
+Tutorial: software engineering project management. 
+Computer Society Press of the IEEE. p. 130.
+
+ Barry W. Boehm (2000). 
+Software cost estimation with Cocomo II: Volume 1.
+ "Foreword by Jason Fried | Shape Up". basecamp.com. Retrieved September 11, 2022.
+
+ "Is Shape Up just a nice theory?". 
+Curious Lab. Retrieved September 12, 2022.
+
+ Lübke, Daniel; van Lessen, Tammo (2016). 
+"Modeling Test Cases in BPMN for Behavior-Driven Development". 
+IEEE Software. 33 (5): 15–21. doi:10.1109/MS.2016.117. S2CID 14539297
+
+Gerhard Fischer, 
+"The Software Technology of the 21st Century: 
+From Software Reuse to Collaborative Software Design"

@@ -1,8 +1,8 @@
 ---
-ru: "Тест 1"
-en: "Test 1"
-code: "practice-1-tests"
-origin: "https://edu.susu.ru/mod/assign/view.php?id=8134264"
+ru: "11 Социальные сети для ученых: Academia.edu, ResearchGate"
+en: "11 Social Networks for Scientists: Academia.edu, ResearchGate"
+code: "practice-11-academic-social-networks"
+origin: "https://edu.susu.ru/mod/resource/view.php?id=8134284"
 ---
 
 <!--
@@ -24,12 +24,3 @@ origin: "https://edu.susu.ru/mod/assign/view.php?id=8134264"
 При повторной выгрузке сохраняйте вложения, решения, имена файлов и структуру каталогов.
 Если источник недоступен, сохраните существующую выгрузку и сообщите об ограничении; не придумывайте недостающие сведения.
 -->
-
-<!-- Страница задания закрыта LMS по срокам доступности. Ниже сохранено только описание, видимое на странице курса; полное описание и вложения отдельной страницы не подтверждены. -->
-
-Тест 1 Попытка 1 ОБЯЗАТЕЛЬНО сдавать на почту:
-
-aleevrz@susu.ru
-
-Файл Ответа по Образцу\
-ФАМИЛИЯ, Тест 1, Вариант ?

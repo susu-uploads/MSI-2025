@@ -1,8 +1,8 @@
 ---
-ru: "Тест 1"
-en: "Test 1"
-code: "practice-1-tests"
-origin: "https://edu.susu.ru/mod/assign/view.php?id=8134264"
+ru: "Финальный тест"
+en: "Final Test"
+code: "practice-4-final-test"
+origin: "https://edu.susu.ru/mod/assign/view.php?id=8134260"
 ---
 
 <!--
@@ -26,10 +26,3 @@ origin: "https://edu.susu.ru/mod/assign/view.php?id=8134264"
 -->
 
 <!-- Страница задания закрыта LMS по срокам доступности. Ниже сохранено только описание, видимое на странице курса; полное описание и вложения отдельной страницы не подтверждены. -->
-
-Тест 1 Попытка 1 ОБЯЗАТЕЛЬНО сдавать на почту:
-
-aleevrz@susu.ru
-
-Файл Ответа по Образцу\
-ФАМИЛИЯ, Тест 1, Вариант ?
